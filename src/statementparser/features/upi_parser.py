@@ -38,13 +38,9 @@ def parse_upi_narration(narration: str) -> UPIDetail | None:
         return None
 
     # Remove trailing "UPI Value Dt ... Ref ..." portion
-    clean = re.sub(
-        r"\s*-?UPI\s+Value\s+Dt.*$", "", narration, flags=re.IGNORECASE
-    ).strip()
+    clean = re.sub(r"\s*-?UPI\s+Value\s+Dt.*$", "", narration, flags=re.IGNORECASE).strip()
     # Also remove standalone "Value Dt..." if present
-    clean = re.sub(
-        r"\s*Value\s+Dt.*$", "", clean, flags=re.IGNORECASE
-    ).strip()
+    clean = re.sub(r"\s*Value\s+Dt.*$", "", clean, flags=re.IGNORECASE).strip()
 
     # Split by hyphen (the standard UPI narration delimiter)
     # UPI-Name-App/VPA-VPA-IFSC-Ref-UPI
@@ -75,8 +71,9 @@ def parse_upi_narration(narration: str) -> UPIDetail | None:
             continue
 
         # Detect IFSC (standard: 4 letters + 7 alphanum, UPI variant: 4 letters + 6-7 alphanum)
-        if re.match(r"^[A-Z]{4}\d{7}$", part, re.IGNORECASE) or \
-           re.match(r"^[A-Z]{4}0[A-Z0-9]{5,7}$", part, re.IGNORECASE):
+        if re.match(r"^[A-Z]{4}\d{7}$", part, re.IGNORECASE) or re.match(
+            r"^[A-Z]{4}0[A-Z0-9]{5,7}$", part, re.IGNORECASE
+        ):
             ifsc = part.upper()
             continue
 
@@ -129,10 +126,11 @@ def _split_upi_parts(text: str) -> list[str]:
     """
     # First, find and protect VPAs (pattern: non-hyphen-chars @ non-hyphen-chars)
     # VPA format: localpart@handle where handle doesn't contain hyphens
-    vpa_pattern = re.compile(r'[A-Za-z0-9._]+@[A-Za-z0-9]+')
+    vpa_pattern = re.compile(r"[A-Za-z0-9._]+@[A-Za-z0-9]+")
 
     # Replace VPAs with placeholders to prevent splitting on them
     vpas: list[str] = []
+
     def _replace_vpa(match: re.Match) -> str:
         vpas.append(match.group())
         return f"__VPA{len(vpas) - 1}__"

@@ -73,9 +73,7 @@ class StatementEngine:
 
             # Step 3: Get parser and parse
             parser = get_parser(bank_code)
-            transactions = parser.parse_transactions(
-                pdf_content.pages, pdf_content.full_text
-            )
+            transactions = parser.parse_transactions(pdf_content.pages, pdf_content.full_text)
 
             if not transactions:
                 raise ParseError(

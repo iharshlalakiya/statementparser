@@ -15,9 +15,12 @@ class TestBalanceCheckerExtended:
     def test_single_transaction(self):
         txns = [
             Transaction(
-                date=date(2026, 4, 19), narration="UPI-Test",
-                amount=Decimal("-160"), withdrawal=Decimal("160"),
-                closing_balance=Decimal("28115.82"), type=TransactionType.DEBIT,
+                date=date(2026, 4, 19),
+                narration="UPI-Test",
+                amount=Decimal("-160"),
+                withdrawal=Decimal("160"),
+                closing_balance=Decimal("28115.82"),
+                type=TransactionType.DEBIT,
             ),
         ]
         result = verify_balances(txns)
@@ -27,14 +30,20 @@ class TestBalanceCheckerExtended:
     def test_totals_calculation(self):
         txns = [
             Transaction(
-                date=date(2026, 4, 19), narration="Debit",
-                amount=Decimal("-100"), withdrawal=Decimal("100"),
-                closing_balance=Decimal("900"), type=TransactionType.DEBIT,
+                date=date(2026, 4, 19),
+                narration="Debit",
+                amount=Decimal("-100"),
+                withdrawal=Decimal("100"),
+                closing_balance=Decimal("900"),
+                type=TransactionType.DEBIT,
             ),
             Transaction(
-                date=date(2026, 4, 20), narration="Credit",
-                amount=Decimal("500"), deposit=Decimal("500"),
-                closing_balance=Decimal("1400"), type=TransactionType.CREDIT,
+                date=date(2026, 4, 20),
+                narration="Credit",
+                amount=Decimal("500"),
+                deposit=Decimal("500"),
+                closing_balance=Decimal("1400"),
+                type=TransactionType.CREDIT,
             ),
         ]
         result = verify_balances(txns)
@@ -45,13 +54,18 @@ class TestBalanceCheckerExtended:
     def test_mismatch_reports_rows(self):
         txns = [
             Transaction(
-                date=date(2026, 4, 19), narration="T1",
-                amount=Decimal("-100"), withdrawal=Decimal("100"),
-                closing_balance=Decimal("1000"), type=TransactionType.DEBIT,
+                date=date(2026, 4, 19),
+                narration="T1",
+                amount=Decimal("-100"),
+                withdrawal=Decimal("100"),
+                closing_balance=Decimal("1000"),
+                type=TransactionType.DEBIT,
             ),
             Transaction(
-                date=date(2026, 4, 20), narration="T2",
-                amount=Decimal("-50"), withdrawal=Decimal("50"),
+                date=date(2026, 4, 20),
+                narration="T2",
+                amount=Decimal("-50"),
+                withdrawal=Decimal("50"),
                 closing_balance=Decimal("800"),  # Wrong! Should be 950
                 type=TransactionType.DEBIT,
             ),

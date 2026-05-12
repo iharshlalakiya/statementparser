@@ -74,8 +74,7 @@ def verify_balances(
     error_message = None
     if not is_valid:
         error_message = (
-            f"Balance mismatch found in {len(mismatched_rows)} row(s): "
-            f"rows {mismatched_rows}"
+            f"Balance mismatch found in {len(mismatched_rows)} row(s): rows {mismatched_rows}"
         )
 
     return BalanceVerification(

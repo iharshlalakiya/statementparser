@@ -36,7 +36,9 @@ console = Console()
 @click.option("--bank", "-b", help="Force bank: sbi, hdfc, icici, axis")
 @click.option("--output", "-o", help="Output file path")
 @click.option(
-    "--format", "-f", "fmt",
+    "--format",
+    "-f",
+    "fmt",
     type=click.Choice(["csv", "excel", "json", "table"]),
     default="table",
     help="Output format (default: table)",
@@ -92,7 +94,9 @@ def main(
 
 
 def _display_statement(
-    stmt: Statement, fmt: str, output: str | None,
+    stmt: Statement,
+    fmt: str,
+    output: str | None,
 ) -> None:
     """Display or export a parsed statement."""
 
@@ -134,8 +138,13 @@ def _print_table(stmt: Statement) -> None:
         desc = txn.upi.merchant if txn.upi and txn.upi.merchant else txn.description[:35]
 
         table.add_row(
-            str(txn.date), desc, debit, credit, balance,
-            txn.category.value, txn.payment_method.value,
+            str(txn.date),
+            desc,
+            debit,
+            credit,
+            balance,
+            txn.category.value,
+            txn.payment_method.value,
         )
 
     console.print(table)

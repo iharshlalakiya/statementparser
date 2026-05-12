@@ -103,8 +103,7 @@ def _read_pdf_pymupdf(file_path: str, password: str | None = None) -> PDFContent
         import fitz  # PyMuPDF
     except ImportError as e:
         raise ParseError(
-            "pdfplumber failed and PyMuPDF is not available. "
-            "Install it with: pip install pymupdf"
+            "pdfplumber failed and PyMuPDF is not available. Install it with: pip install pymupdf"
         ) from e
 
     try:

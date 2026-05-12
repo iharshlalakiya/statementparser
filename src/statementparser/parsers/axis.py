@@ -26,7 +26,9 @@ class AxisParser(BaseBankParser):
         return "AXIS"
 
     def parse_transactions(
-        self, pages: list[pdfplumber.page.Page], full_text: str,
+        self,
+        pages: list[pdfplumber.page.Page],
+        full_text: str,
     ) -> list[Transaction]:
         transactions: list[Transaction] = []
         for page in pages:
@@ -53,8 +55,10 @@ class AxisParser(BaseBankParser):
         if ifsc_match:
             ifsc = ifsc_match.group(1)
         return BankInfo(
-            bank_name=self.bank_name, bank_code=self.bank_code,
-            account_number=account_number, ifsc=ifsc,
+            bank_name=self.bank_name,
+            bank_code=self.bank_code,
+            account_number=account_number,
+            ifsc=ifsc,
         )
 
     def _find_header(self, table: list[list[str | None]]) -> tuple[int | None, dict[str, int]]:
@@ -103,9 +107,14 @@ class AxisParser(BaseBankParser):
             txn_type = TransactionType.DEBIT if withdrawal > 0 else TransactionType.CREDIT
             amount = -withdrawal if withdrawal > 0 else deposit
             return Transaction(
-                date=txn_date, narration=narration, description=narration,
-                amount=amount, withdrawal=withdrawal, deposit=deposit,
-                closing_balance=closing_balance, type=txn_type,
+                date=txn_date,
+                narration=narration,
+                description=narration,
+                amount=amount,
+                withdrawal=withdrawal,
+                deposit=deposit,
+                closing_balance=closing_balance,
+                type=txn_type,
                 payment_method=detect_payment_method(narration),
             )
         except (IndexError, ValueError, TypeError):

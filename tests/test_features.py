@@ -127,14 +127,22 @@ class TestBalanceChecker:
 
         txns = [
             Transaction(
-                date=date(2026, 4, 19), narration="UPI-Test1", amount=Decimal("-160"),
-                withdrawal=Decimal("160"), deposit=Decimal("0"),
-                closing_balance=Decimal("28115.82"), type=TransactionType.DEBIT,
+                date=date(2026, 4, 19),
+                narration="UPI-Test1",
+                amount=Decimal("-160"),
+                withdrawal=Decimal("160"),
+                deposit=Decimal("0"),
+                closing_balance=Decimal("28115.82"),
+                type=TransactionType.DEBIT,
             ),
             Transaction(
-                date=date(2026, 4, 19), narration="UPI-Test2", amount=Decimal("-20"),
-                withdrawal=Decimal("20"), deposit=Decimal("0"),
-                closing_balance=Decimal("28095.82"), type=TransactionType.DEBIT,
+                date=date(2026, 4, 19),
+                narration="UPI-Test2",
+                amount=Decimal("-20"),
+                withdrawal=Decimal("20"),
+                deposit=Decimal("0"),
+                closing_balance=Decimal("28095.82"),
+                type=TransactionType.DEBIT,
             ),
         ]
         result = verify_balances(txns)
@@ -150,13 +158,19 @@ class TestBalanceChecker:
 
         txns = [
             Transaction(
-                date=date(2026, 4, 19), narration="Test1", amount=Decimal("-100"),
-                withdrawal=Decimal("100"), closing_balance=Decimal("1000"),
+                date=date(2026, 4, 19),
+                narration="Test1",
+                amount=Decimal("-100"),
+                withdrawal=Decimal("100"),
+                closing_balance=Decimal("1000"),
                 type=TransactionType.DEBIT,
             ),
             Transaction(
-                date=date(2026, 4, 19), narration="Test2", amount=Decimal("-50"),
-                withdrawal=Decimal("50"), closing_balance=Decimal("800"),  # Should be 950
+                date=date(2026, 4, 19),
+                narration="Test2",
+                amount=Decimal("-50"),
+                withdrawal=Decimal("50"),
+                closing_balance=Decimal("800"),  # Should be 950
                 type=TransactionType.DEBIT,
             ),
         ]

@@ -18,15 +18,11 @@ class TestCategorizerExtended:
         assert result == TransactionCategory.RECHARGE
 
     def test_atm_withdrawal_from_method(self):
-        result = categorize_transaction(
-            "ATM WDL SBI MUMBAI", payment_method=PaymentMethod.ATM
-        )
+        result = categorize_transaction("ATM WDL SBI MUMBAI", payment_method=PaymentMethod.ATM)
         assert result == TransactionCategory.ATM_WITHDRAWAL
 
     def test_interest_from_method(self):
-        result = categorize_transaction(
-            "CR INTEREST", payment_method=PaymentMethod.INTEREST
-        )
+        result = categorize_transaction("CR INTEREST", payment_method=PaymentMethod.INTEREST)
         assert result == TransactionCategory.INTEREST
 
     def test_default_upi_is_transfer(self):

@@ -18,13 +18,17 @@ class TestSummary:
             bank=BankInfo(bank_name="State Bank of India", bank_code="SBI"),
             transactions=[
                 Transaction(
-                    date=date(2026, 4, 19), narration="UPI-ZOMATO-food",
-                    amount=Decimal("-160"), withdrawal=Decimal("160"),
+                    date=date(2026, 4, 19),
+                    narration="UPI-ZOMATO-food",
+                    amount=Decimal("-160"),
+                    withdrawal=Decimal("160"),
                     type=TransactionType.DEBIT,
                 ),
                 Transaction(
-                    date=date(2026, 4, 20), narration="NEFT-SALARY-Company",
-                    amount=Decimal("50000"), deposit=Decimal("50000"),
+                    date=date(2026, 4, 20),
+                    narration="NEFT-SALARY-Company",
+                    amount=Decimal("50000"),
+                    deposit=Decimal("50000"),
                     type=TransactionType.CREDIT,
                 ),
             ],

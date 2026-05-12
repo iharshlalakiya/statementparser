@@ -44,16 +44,21 @@ def export_excel(statement: Statement, output_path: str) -> str:
         # Add summary sheet
         summary_data = {
             "Metric": [
-                "Bank", "Account", "Period",
-                "Total Transactions", "Total Credits",
-                "Total Debits", "Net Amount",
+                "Bank",
+                "Account",
+                "Period",
+                "Total Transactions",
+                "Total Credits",
+                "Total Debits",
+                "Net Amount",
             ],
             "Value": [
                 statement.bank.bank_name,
                 statement.bank.account_number or "N/A",
                 (
                     f"{statement.statement_period[0]} to {statement.statement_period[1]}"
-                    if statement.statement_period else "N/A"
+                    if statement.statement_period
+                    else "N/A"
                 ),
                 statement.transaction_count,
                 f"₹{float(statement.total_credits):,.2f}",
@@ -62,6 +67,7 @@ def export_excel(statement: Statement, output_path: str) -> str:
             ],
         }
         import pandas as pd
+
         summary_df = pd.DataFrame(summary_data)
         summary_df.to_excel(writer, sheet_name="Summary", index=False)
 

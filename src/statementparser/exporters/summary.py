@@ -41,15 +41,15 @@ def generate_summary(statement: Statement) -> dict:
         "account": statement.bank.account_number,
         "period": (
             {"from": str(statement.statement_period[0]), "to": str(statement.statement_period[1])}
-            if statement.statement_period else None
+            if statement.statement_period
+            else None
         ),
         "total_transactions": len(txns),
         "total_credits": float(statement.total_credits),
         "total_debits": float(statement.total_debits),
         "net_amount": float(statement.net_amount),
         "balance_verified": (
-            statement.balance_verification.is_valid
-            if statement.balance_verification else None
+            statement.balance_verification.is_valid if statement.balance_verification else None
         ),
         "category_breakdown": dict(category_counts.most_common()),
         "category_amounts": category_amounts,

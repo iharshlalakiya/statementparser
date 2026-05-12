@@ -20,12 +20,14 @@ class TestSBIParser:
     def test_clean_amount_comma_separated(self):
         parser = SBIParser()
         from decimal import Decimal
+
         assert parser.clean_amount("1,500.00") == Decimal("1500.00")
         assert parser.clean_amount("28,115.82") == Decimal("28115.82")
 
     def test_clean_amount_edge_cases(self):
         parser = SBIParser()
         from decimal import Decimal
+
         assert parser.clean_amount("") == Decimal("0")
         assert parser.clean_amount("-") == Decimal("0")
         assert parser.clean_amount("0.00") == Decimal("0")

@@ -58,13 +58,17 @@ class TestStatement:
             bank=BankInfo(bank_name="SBI", bank_code="SBI"),
             transactions=[
                 Transaction(
-                    date=date(2026, 4, 19), narration="Debit",
-                    amount=Decimal("-100"), withdrawal=Decimal("100"),
+                    date=date(2026, 4, 19),
+                    narration="Debit",
+                    amount=Decimal("-100"),
+                    withdrawal=Decimal("100"),
                     type=TransactionType.DEBIT,
                 ),
                 Transaction(
-                    date=date(2026, 4, 20), narration="Credit",
-                    amount=Decimal("500"), deposit=Decimal("500"),
+                    date=date(2026, 4, 20),
+                    narration="Credit",
+                    amount=Decimal("500"),
+                    deposit=Decimal("500"),
                     type=TransactionType.CREDIT,
                 ),
             ],

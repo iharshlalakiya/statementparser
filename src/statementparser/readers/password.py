@@ -33,14 +33,16 @@ def generate_password_variants(password: str) -> list[str]:
     if date_match:
         dd, mm, yyyy = date_match.groups()
         yy = yyyy[2:]
-        variants.extend([
-            f"{dd}{mm}{yyyy}",      # DDMMYYYY
-            f"{dd}-{mm}-{yyyy}",    # DD-MM-YYYY
-            f"{dd}/{mm}/{yyyy}",    # DD/MM/YYYY
-            f"{dd}{mm}{yy}",        # DDMMYY
-            f"{yyyy}{mm}{dd}",      # YYYYMMDD
-            f"{dd}.{mm}.{yyyy}",    # DD.MM.YYYY
-        ])
+        variants.extend(
+            [
+                f"{dd}{mm}{yyyy}",  # DDMMYYYY
+                f"{dd}-{mm}-{yyyy}",  # DD-MM-YYYY
+                f"{dd}/{mm}/{yyyy}",  # DD/MM/YYYY
+                f"{dd}{mm}{yy}",  # DDMMYY
+                f"{yyyy}{mm}{dd}",  # YYYYMMDD
+                f"{dd}.{mm}.{yyyy}",  # DD.MM.YYYY
+            ]
+        )
 
     # Remove duplicates while preserving order
     seen: set[str] = set()

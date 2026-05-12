@@ -40,9 +40,7 @@ def get_parser(bank_code: str) -> BaseBankParser:
 
     if code not in parser_map:
         available = ", ".join(sorted(parser_map.keys()))
-        raise ValueError(
-            f"No parser found for bank '{bank_code}'. Available: {available}"
-        )
+        raise ValueError(f"No parser found for bank '{bank_code}'. Available: {available}")
 
     return parser_map[code]()
 

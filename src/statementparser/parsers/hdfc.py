@@ -26,7 +26,9 @@ class HDFCParser(BaseBankParser):
         return "HDFC"
 
     def parse_transactions(
-        self, pages: list[pdfplumber.page.Page], full_text: str,
+        self,
+        pages: list[pdfplumber.page.Page],
+        full_text: str,
     ) -> list[Transaction]:
         transactions: list[Transaction] = []
         for page in pages:
@@ -57,14 +59,19 @@ class HDFCParser(BaseBankParser):
         if branch_match:
             branch = branch_match.group(1).strip()
         return BankInfo(
-            bank_name=self.bank_name, bank_code=self.bank_code,
-            account_number=account_number, ifsc=ifsc, branch=branch,
+            bank_name=self.bank_name,
+            bank_code=self.bank_code,
+            account_number=account_number,
+            ifsc=ifsc,
+            branch=branch,
         )
 
     def _find_header(self, table: list[list[str | None]]) -> tuple[int | None, dict[str, int]]:
         kw = {
-            "date": ["date"], "narration": ["narration", "description", "particulars"],
-            "withdrawal": ["withdrawal", "debit"], "deposit": ["deposit", "credit"],
+            "date": ["date"],
+            "narration": ["narration", "description", "particulars"],
+            "withdrawal": ["withdrawal", "debit"],
+            "deposit": ["deposit", "credit"],
             "balance": ["balance", "closing balance"],
         }
         for idx, row in enumerate(table):
@@ -107,9 +114,14 @@ class HDFCParser(BaseBankParser):
             txn_type = TransactionType.DEBIT if withdrawal > 0 else TransactionType.CREDIT
             amount = -withdrawal if withdrawal > 0 else deposit
             return Transaction(
-                date=txn_date, narration=narration, description=narration,
-                amount=amount, withdrawal=withdrawal, deposit=deposit,
-                closing_balance=closing_balance, type=txn_type,
+                date=txn_date,
+                narration=narration,
+                description=narration,
+                amount=amount,
+                withdrawal=withdrawal,
+                deposit=deposit,
+                closing_balance=closing_balance,
+                type=txn_type,
                 payment_method=detect_payment_method(narration),
             )
         except (IndexError, ValueError, TypeError):

@@ -91,9 +91,7 @@ class SBIParser(BaseBankParser):
             branch = branch_match.group(1).strip()
 
         # Account holder
-        name_match = re.search(
-            r"(?:Name|Account\s*Holder)[:\s]*([^\n]+)", full_text, re.IGNORECASE
-        )
+        name_match = re.search(r"(?:Name|Account\s*Holder)[:\s]*([^\n]+)", full_text, re.IGNORECASE)
         if name_match:
             account_holder = name_match.group(1).strip()
 
@@ -108,9 +106,7 @@ class SBIParser(BaseBankParser):
 
     # ── Private helpers ──────────────────────────────────────────────
 
-    def _find_header(
-        self, table: list[list[str | None]]
-    ) -> tuple[int | None, dict[str, int]]:
+    def _find_header(self, table: list[list[str | None]]) -> tuple[int | None, dict[str, int]]:
         """Find the header row and map column names to indices.
 
         Looks for rows containing keywords like 'Txn Date', 'Narration',
@@ -138,8 +134,10 @@ class SBIParser(BaseBankParser):
                         break
 
             # Need at least date, narration, and one amount column
-            if "date" in col_map and "narration" in col_map and (
-                "withdrawal" in col_map or "deposit" in col_map or "balance" in col_map
+            if (
+                "date" in col_map
+                and "narration" in col_map
+                and ("withdrawal" in col_map or "deposit" in col_map or "balance" in col_map)
             ):
                 return idx, col_map
 
@@ -221,9 +219,7 @@ class SBIParser(BaseBankParser):
 
         Pattern: 'Value Dt DD/MM/YYYY' or 'Value Dt DD-MM-YYYY'
         """
-        match = re.search(
-            r"Value\s+Dt\s+(\d{2}[/-]\d{2}[/-]\d{4})", narration, re.IGNORECASE
-        )
+        match = re.search(r"Value\s+Dt\s+(\d{2}[/-]\d{2}[/-]\d{4})", narration, re.IGNORECASE)
         if match:
             return self.parse_date(match.group(1))
         return None
