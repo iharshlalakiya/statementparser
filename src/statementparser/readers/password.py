@@ -66,6 +66,4 @@ def is_common_indian_password(password: str) -> bool:
     if re.match(r"^\d{8}$", password):
         return True
     # DD-MM-YYYY or DD/MM/YYYY
-    if re.match(r"^\d{2}[-/]\d{2}[-/]\d{4}$", password):
-        return True
-    return False
+    return bool(re.match(r"^\d{2}[-/]\d{2}[-/]\d{4}$", password))
