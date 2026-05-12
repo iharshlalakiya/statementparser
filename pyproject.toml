@@ -1,5 +1,5 @@
 [project]
-name = "statementparser"
+name = "statementsparser"
 version = "0.1.0"
 description = "Parse Indian bank statements (SBI, HDFC, ICICI, Axis) into clean, unified pandas DataFrames"
 readme = "README.md"
