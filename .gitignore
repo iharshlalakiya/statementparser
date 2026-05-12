@@ -1,0 +1,46 @@
+# ── Python ───────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# ── Virtual environments ─────────────────────────────────────────────
+.venv/
+venv/
+ENV/
+
+# ── UV ───────────────────────────────────────────────────────────────
+# uv.lock is committed (reproducible builds)
+# .python-version is committed (pinned Python)
+
+# ── IDE ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Testing / Coverage ──────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ── OS ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Docs build ───────────────────────────────────────────────────────
+site/
+
+# ── Misc ─────────────────────────────────────────────────────────────
+*.log
+*.bak
+*.tmp
